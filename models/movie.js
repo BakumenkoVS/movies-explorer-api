@@ -35,9 +35,11 @@ const movieSchema = new mongoose.Schema({
     validate: [validator.isURL, 'Некорректный url'],
   },
   owner: {
+    type: String,
     required: true,
   },
   movieId: {
+    type: String,
     required: true,
   },
   nameRU: {
