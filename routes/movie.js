@@ -7,16 +7,16 @@ const {
 } = require('../controllers/movie');
 
 const regularEmail = /^((http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-/])*)?/;
-router.get('/', getMovies);
+router.get('/movies', getMovies);
 
 router.post(
-  '/',
+  '/movies',
   celebrate({
     body: Joi.object().keys({
       country: Joi.string().required(),
       director: Joi.string().required(),
-      duration: Joi.string().required(),
-      year: Joi.string().required(),
+      duration: Joi.number().required(),
+      year: Joi.number().required(),
       description: Joi.string().required(),
       image: Joi.string()
         .required()
@@ -27,8 +27,7 @@ router.post(
       thumbnail: Joi.string()
         .required()
         .pattern(regularEmail),
-      owner: Joi.required(),
-      movieId: Joi.required(),
+      movieId: Joi.string().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
     }),
@@ -37,10 +36,10 @@ router.post(
 );
 
 router.delete(
-  '/_id',
+  '/movies/:id',
   celebrate({
     params: Joi.object().keys({
-      cardId: Joi.string().length(24).hex().required(),
+      id: Joi.string().length(24).hex().required(),
     }),
   }),
   deleteMovie,

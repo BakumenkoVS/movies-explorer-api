@@ -53,7 +53,7 @@ const createMovies = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.findById(req.params.id)
     .then((movie) => {
       if (!movie) {
         next(new NotFoundError('Такой карточки не существует'));

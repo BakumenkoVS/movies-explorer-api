@@ -71,8 +71,8 @@ app.post(
 
 app.use(auth);
 
-app.use('/users', require('./routes/user'));
-app.use('/movies', require('./routes/movie'));
+app.use(require('./routes/user'));
+app.use(require('./routes/movie'));
 
 app.use((req, res, next) => {
   next(new NotFoundError('Маршрут не найден'));
