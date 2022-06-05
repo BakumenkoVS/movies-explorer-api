@@ -16,6 +16,8 @@ const updateProfile = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Переданы некорректные данные'));
+      } else if (err.code === 11000) {
+        next(new ConflictError('Пользователь с таким EMAIL уже зарегистрирован'));
       }
       next(err);
     });
@@ -72,7 +74,7 @@ const login = (req, res, next) => {
       res.send({ token });
     })
     .catch(() => {
-      next(new UnauthorizedError('Доступ запрещен'));
+      next(new UnauthorizedError('Некорректные данные пароля или почты'));
     });
 };
 
