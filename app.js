@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { celebrate, Joi, errors } = require('celebrate');
+const { errors } = require('celebrate');
 const bodyParser = require('body-parser');
 const NotFoundError = require('./errors/notFoundError');
-const { login, createUser } = require('./controllers/user');
+
 const auth = require('./middlewares/auth');
 const { errorLogger, requestLogger } = require('./middlewares/logger');
 
@@ -46,28 +46,9 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.post(
-  '/signin',
-  celebrate({
-    body: Joi.object().keys({
-      email: Joi.string().email().required(),
-      password: Joi.string().required(),
-    }),
-  }),
-  login,
-);
+app.use(require('./routes/login'));
 
-app.post(
-  '/signup',
-  celebrate({
-    body: Joi.object().keys({
-      email: Joi.string().email().required(),
-      password: Joi.string().required(),
-      name: Joi.string().min(2).max(30),
-    }),
-  }),
-  createUser,
-);
+app.use(require('./routes/login'));
 
 app.use(auth);
 
