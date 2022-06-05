@@ -48,8 +48,6 @@ app.use((req, res, next) => {
 
 app.use(require('./routes/login'));
 
-app.use(require('./routes/login'));
-
 app.use(auth);
 
 app.use(require('./routes/user'));
