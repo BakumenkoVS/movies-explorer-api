@@ -27,7 +27,7 @@ router.post(
       thumbnail: Joi.string()
         .required()
         .pattern(regularEmail),
-      movieId: Joi.string().required(),
+      movieId: Joi.number(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
     }),
