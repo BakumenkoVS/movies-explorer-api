@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
+const mongoose = require("mongoose");
+const validator = require("validator");
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -26,15 +26,15 @@ const movieSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    validate: [validator.isURL, 'Некорректный url'],
+    validate: [validator.isURL, "Некорректный url"],
   },
   trailerLink: {
     type: String,
-    validate: [validator.isURL, 'Некорректный url'],
+    validate: [validator.isURL, "Некорректный url"],
   },
   thumbnail: {
     type: String,
-    validate: [validator.isURL, 'Некорректный url'],
+    validate: [validator.isURL, "Некорректный url"],
   },
   owner: {
     type: String,
@@ -54,4 +54,4 @@ const movieSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('movie', movieSchema);
+module.exports = mongoose.model("movie", movieSchema);
