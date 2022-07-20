@@ -28,6 +28,8 @@ const allowedCors = [
   "http://localhost:3000/",
   "https://movie.diploma.nomoredomains.xyz",
   "http://movie.diploma.nomoredomains.xyz",
+  "https://movie.diploma.nomoredomains.xyz/",
+  "http://movie.diploma.nomoredomains.xyz/",
 ];
 
 app.use((req, res, next) => {
